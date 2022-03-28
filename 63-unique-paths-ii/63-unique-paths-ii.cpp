@@ -1,22 +1,44 @@
 class Solution {
 public:
-    int mod=100000007;
-    int uniquePathsWithObstacles(vector<vector<int>>& v) {
-        int m = v.size();
-        int n = v[0].size();
-        if(v[0][0] == 1 || v[m - 1][n - 1] == 1) return 0;
+    int uniquePathsWithObstacles(vector<vector<int>>& matrix) {
+        
+{
 
-        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
-        dp[0][1] = 1;
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+
+    vector<vector<int>> dp_matrix(rows, vector<int>(cols, 0));
+
+    dp_matrix[0][0] = !matrix[0][0]; // If the first entry's value from the given matrix is 1, It means the path to this entry is 0 vice versa 1..
         
-        for(int i = 1; i <= m; i++) {
-            for(int j = 1; j <= n; j++) {
-                if(!v[i - 1][j - 1])
-                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
-            }
+
+    // fill the first row
+    for (int j = 1; j < cols; j++)
+    {
+        dp_matrix[0][j] = dp_matrix[0][j - 1] != 0 && matrix[0][j] != 1 ? 1 : 0;
+    }
+
+    // fill the first column
+    for (int i = 1; i < rows; i++)
+    {
+        dp_matrix[i][0] = dp_matrix[i - 1][0] != 0 && matrix[i][0] != 1 ? 1 : 0;
+    }
+
+    // fill the rest of the entries
+    for (int i = 1; i < rows; i++)
+    {
+        for (int j = 1; j < cols; j++)
+        {
+            // If the entry's value in the given matrix is not equal to 1 then add the two possible path to the current dp entry.
+            // which are the left entry and the top entry.
+
+            dp_matrix[i][j] = matrix[i][j] != 1 ? dp_matrix[i - 1][j] + dp_matrix[i][j - 1] : 0;
         }
-        
-        return dp[m][n];
+    }
+
+    return dp_matrix[rows - 1][cols - 1];
+}
+
         
     }
 };
