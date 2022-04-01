@@ -7,9 +7,7 @@ public:
         char temp=' ';
         while(i<j)
         {
-             temp=s[i];
-            s[i]=s[j];
-            s[j]=temp;
+             swap(s[i],s[j]);
             i++;
             j--;
         }
