@@ -6,7 +6,7 @@ string removeDuplicates(string s, int k) {
     
     for(int i=0;i<s.length();i++){
         if(!st.empty() && st.top().first==s[i]){
-            ++st.top().second;
+            st.top().second++;
             if(st.top().second==k)
                 st.pop();
         }
