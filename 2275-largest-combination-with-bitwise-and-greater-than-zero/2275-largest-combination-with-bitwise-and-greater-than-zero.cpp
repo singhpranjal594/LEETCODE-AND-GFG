@@ -17,7 +17,7 @@ public:
         int maxi=INT_MIN;
         for(int i=0;i<32;i++)
         {
-            cout<<v[i];
+            
             maxi=max(maxi,v[i]);
         }
         return maxi;
