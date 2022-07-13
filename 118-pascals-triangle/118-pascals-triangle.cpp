@@ -16,12 +16,7 @@ public:
             p.push_back(cur);
             prev=cur;
         }
-        for(int i=0;i<p.size();i++)
-        {
-            for(auto j:p[i])
-                cout<<j<<" ";
-            cout<<endl;
-        }
+        
         return p;
         
         
