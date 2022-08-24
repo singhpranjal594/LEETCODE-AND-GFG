@@ -3,11 +3,9 @@ public:
     bool isPowerOfThree(int n) {
         if(n<=0)
             return false;
-        while(n%3==0)
-            n/=3;
-        if(n==1)
-            return true;
-        return false;
+        float ans=log(n)/log(3);
+        cout<<ans;
+        return pow(3,ans)==n;
         
     }
 };
